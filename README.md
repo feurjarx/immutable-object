@@ -63,3 +63,16 @@ console.log(immutableObject2.a); // {aa: 1}   [+] good
 immutableObject2.a.aa = null;
 console.log(immutableObject2.a.aa); // 1   [+] good too
 ```
+
+## advantage over Ummutable.js
+```js
+const immutableObject1 = freezeDeep({a: 1, b: 2});
+const {a, b} = immutableObject1; // [+] good
+console.log(a, b); // 1 2 [+] good
+a = 1; // Uncaught TypeError: Assignment to constant variable. [+] good
+
+const immutableObject2 = Immutable.fromJS({a: 1, b: 2});
+const {a, b} = immutableObject1; 
+console.log(a, b); // undefined undefined [x] bad
+// [x] bad
+```
