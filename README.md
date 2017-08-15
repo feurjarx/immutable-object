@@ -22,3 +22,31 @@ function freezeDeep(obj) {
     }
 }
 ```
+## use case
+```js
+let immutableArray = freezeDeep([
+    {a: {aa: [1,2,3], bb: {ccc: 2}}},
+    {a: {
+        aa: null, 
+        bb: undefined, 
+        cc: [], 
+        dd: [
+            {aaa: 1, bbb: {}, ccc: 0}
+        ]
+    }}
+]);
+
+let immutableObject = freezeDeep({
+    a: {aa: [1,2,3], bb: {ccc: 2}},
+    aa: {
+        aa: null,
+        bb: undefined,
+        cc: [],
+        dd: [
+            {aaa: 1, bbb: {}, ccc: 0}
+        ]
+    }
+});
+```
+
+## advantage over Object.freeze
