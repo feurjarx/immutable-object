@@ -24,7 +24,7 @@ function freezeDeep(obj) {
 ```
 ## use case
 ```js
-let immutableArray = freezeDeep([
+const immutableArray = freezeDeep([
     {a: {aa: [1,2,3], bb: {ccc: 2}}},
     {a: {
         aa: null, 
@@ -36,7 +36,7 @@ let immutableArray = freezeDeep([
     }}
 ]);
 
-let immutableObject = freezeDeep({
+const immutableObject = freezeDeep({
     a: {aa: [1,2,3], bb: {ccc: 2}},
     aa: {
         aa: null,
@@ -50,3 +50,16 @@ let immutableObject = freezeDeep({
 ```
 
 ## advantage over Object.freeze
+```js
+let immutableObject1 = Object.freeze({a: {aa: 1}});
+immutableObject1.a = null;
+console.log(immutableObject1.a); // {aa: 1}   [+] good
+immutableObject1.a.aa = null;
+console.log(immutableObject1.a.aa); // null   [x] bad
+
+const immutableObject2 = freezeDeep({a: {aa: 1}});
+immutableObject2.a = null;
+console.log(immutableObject2.a); // {aa: 1}   [+] good
+immutableObject2.a.aa = null;
+console.log(immutableObject2.a.aa); // 1   [+] good too
+```
