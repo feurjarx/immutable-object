@@ -3,7 +3,6 @@
 function fabric(obj) {
     if (Array.isArray(obj)) {\
         return obj.reduce(function(result, _, i) {
-            debugger;
             return Object.defineProperty(result, i, {
                 writable: false,
                 value: typeof obj[i] === 'object' ? fabric(obj[i]) : obj[i]
